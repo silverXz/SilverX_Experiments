@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2B7F1C2C-DF7D-41CD-B437-C779044BCD84}</ProjectGuid>
+    <RootNamespace>SilverX_Experiments</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\Bin</OutDir>
+    <IncludePath>$(SolutionDir)\Include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Lib\;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(SolutionDir)\Bin\;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\Bin</OutDir>
+    <IncludePath>$(SolutionDir)\Include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Lib\;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(SolutionDir)\Bin\;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\fragment.frag" />
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\MRT_fragment.frag" />
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\MRT_vertex.vert" />
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\quad.frag" />
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\quad.vert" />
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p1.frag" />
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p1.vert" />
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p2.frag" />
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p2.vert" />
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p3.frag" />
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p3.vert" />
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\vertex.vert" />
+    <None Include="ReadMe.txt" />
+    <None Include="res\SilverX_Experiments.ico" />
+    <None Include="res\SilverX_Experiments.rc2" />
+    <None Include="res\SilverX_ExperimentsDoc.ico" />
+    <None Include="res\Toolbar.bmp" />
+    <None Include="res\Toolbar256.bmp" />
+    <None Include="UserImages.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\glcontext.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\GLShader.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Quad.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Scene.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\ShaderLib.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\SilverFramebuffer.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\WxCamera.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\lineqn.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\QPerformanceTimer.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\Texture.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\Trial.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xArcball.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xBoundingBox.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xCamera.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xColor.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xCurvature.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xEdge.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xEulerAngles.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xFace.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xFileIO.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xForm.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xFrustum.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xHistogram.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMaterial.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMatrix44.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMesh.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshAngiography.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshKdTree.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshRepair.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshSmooth.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xPlane.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xQuaternion.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xRay.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xSphere.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xTimer.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xTransformer.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xUtil.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xVector.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xVector3d.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xVertex3d.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xViewport.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xUtilMfc.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="SilverX_Experiments.h" />
+    <ClInclude Include="SilverX_ExperimentsDoc.h" />
+    <ClInclude Include="SilverX_ExperimentsView.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\glcontext.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\GLShader.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Quad.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Scene.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\ShaderLib.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\SilverFramebuffer.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\WxCamera.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\Texture.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\Trial.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xArcball.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xBoundingBox.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xCamera.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xColor.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xCurvature.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xEdge.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xEulerAngles.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xFace.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xFileIO.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xFrustum.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMaterial.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMatrix44.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMesh.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshAngiography.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshKdTree.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshRepair.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshSmooth.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xPlane.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xQuaternion.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xRay.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xSphere.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xTimer.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xTransformer.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xUtil.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xVector3d.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xVertex3d.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xViewport.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xUtilMfc.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="SilverX_Experiments.cpp" />
+    <ClCompile Include="SilverX_ExperimentsDoc.cpp" />
+    <ClCompile Include="SilverX_ExperimentsView.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SilverX_Experiments.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="SilverX_Experiments.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
