@@ -49,6 +49,11 @@ void ShaderLib::CompileAndLinkAllShaderPrograms()
 
 	m_pShaderLib[E_SSAOP3_SHADER]->Load( "shader/SSAO_p3.vert",		GLSLShader::VERTEX,
 		"shader/SSAO_p3.frag",	GLSLShader::FRAGMENT );
+
+	m_pShaderLib[E_SSAOP4_SHADER] = new GLShader;
+
+	m_pShaderLib[E_SSAOP4_SHADER]->Load( "shader/SSAO_p4.vert",		GLSLShader::VERTEX,
+		"shader/SSAO_p4.frag",	GLSLShader::FRAGMENT );
 }
 
 GLShader* ShaderLib::GetShaderProgram(E_SHADER_TYPE effect) const

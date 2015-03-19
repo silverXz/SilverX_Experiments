@@ -63,7 +63,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;glew32.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -90,7 +90,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;glew32.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -115,6 +115,8 @@
     <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p2.vert" />
     <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p3.frag" />
     <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p3.vert" />
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p4.frag" />
+    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p4.vert" />
     <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\vertex.vert" />
     <None Include="ReadMe.txt" />
     <None Include="res\SilverX_Experiments.ico" />
@@ -125,47 +127,17 @@
     <None Include="UserImages.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\ArcBall.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Box.h" />
     <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\glcontext.h" />
     <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\GLShader.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Octree.h" />
     <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Quad.h" />
     <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Scene.h" />
     <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\ShaderLib.h" />
+    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\SilMesh.h" />
     <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\SilverFramebuffer.h" />
     <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\WxCamera.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\lineqn.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\QPerformanceTimer.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\Texture.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\Trial.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xArcball.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xBoundingBox.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xCamera.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xColor.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xCurvature.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xEdge.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xEulerAngles.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xFace.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xFileIO.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xForm.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xFrustum.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xHistogram.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMaterial.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMatrix44.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMesh.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshAngiography.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshKdTree.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshRepair.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshSmooth.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xPlane.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xQuaternion.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xRay.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xSphere.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xTimer.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xTransformer.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xUtil.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xVector.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xVector3d.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xVertex3d.h" />
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xViewport.h" />
     <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xUtilMfc.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Resource.h" />
@@ -176,42 +148,16 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\ArcBall.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Box.cpp" />
     <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\glcontext.cpp" />
     <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\GLShader.cpp" />
     <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Quad.cpp" />
     <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Scene.cpp" />
     <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\ShaderLib.cpp" />
+    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\SilMesh.cpp" />
     <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\SilverFramebuffer.cpp" />
     <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\WxCamera.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\Texture.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\Trial.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xArcball.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xBoundingBox.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xCamera.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xColor.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xCurvature.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xEdge.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xEulerAngles.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xFace.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xFileIO.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xFrustum.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMaterial.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMatrix44.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMesh.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshAngiography.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshKdTree.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshRepair.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xMeshSmooth.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xPlane.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xQuaternion.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xRay.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xSphere.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xTimer.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xTransformer.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xUtil.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xVector3d.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xVertex3d.cpp" />
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xLib\xViewport.cpp" />
     <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xUtilMfc.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="SilverX_Experiments.cpp" />

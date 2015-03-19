@@ -126,7 +126,28 @@ void WxCamera::setCurrentAngle( float _angle )
 	curAngle = _angle;
 }
 
+void WxCamera::moveForwards( void )
+{
+	vec3 orient = normalize(mlookAt - mposition);
+
+	mposition += orient * forwardSpeed;
+	mlookAt += orient * forwardSpeed;
+
+	view = glm::lookAt(mposition,mlookAt,mUp);
+}
+
+void WxCamera::moveBackwards( void )
+{
+	vec3 orient = normalize(mposition - mlookAt);
+
+	mposition += orient * forwardSpeed;
+	mlookAt += orient * forwardSpeed;
+
+	view = glm::lookAt(mposition,mlookAt,mUp);
+}
+
 
 float WxCamera::zSpeed = 0.10f;
 float WxCamera::rSpeed = halfPai / 40.0f ;   //9 degree one time
 float WxCamera::tSpeed = 0.18f;
+float WxCamera::forwardSpeed = 0.10f;

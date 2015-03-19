@@ -42,6 +42,10 @@ public:
 	void zoomOut(void);
 	void cwRotate(void);
 	void ccwRotate(void);
+
+	void moveForwards(void);
+	void moveBackwards(void);
+
 	void moveUp(void);
 	void moveDown(void);
 	glm::mat4 getViewMatrix(void){ return view;}
@@ -62,4 +66,5 @@ private:
 	static float zSpeed;
 	static float rSpeed;
 	static float tSpeed;
+	static float forwardSpeed;
 };

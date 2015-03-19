@@ -44,6 +44,11 @@ protected:
 
 	OpenGLContext m_glContext;
 
+	bool m_bLeftButtonDown;
+	bool m_bRightButtonDown;
+
+	bool m_bSSAO;
+
 // Generated message map functions
 protected:
 	afx_msg void OnFilePrintPreview();
@@ -63,6 +68,9 @@ public:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
+	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnSsaoEnable();
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
 #ifndef _DEBUG  // debug version in SilverX_ExperimentsView.cpp

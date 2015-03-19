@@ -14,6 +14,7 @@
 
 #include "xUtilMfc.h"
 #include "Scene.h"
+#include "ArcBall.h"
 
 #include <assert.h>
 
@@ -41,6 +42,9 @@ BEGIN_MESSAGE_MAP(CSilverX_ExperimentsView, CView)
 	ON_WM_ERASEBKGND()
 	ON_WM_SIZE()
 	ON_WM_MOUSEWHEEL()
+	ON_WM_RBUTTONDOWN()
+	ON_COMMAND(ID_SSAO_ENABLE, &CSilverX_ExperimentsView::OnSsaoEnable)
+	ON_WM_KEYDOWN()
 END_MESSAGE_MAP()
 
 // CSilverX_ExperimentsView construction/destruction
@@ -48,6 +52,9 @@ END_MESSAGE_MAP()
 CSilverX_ExperimentsView::CSilverX_ExperimentsView()
 {
 	// TODO: add construction code here
+	m_bLeftButtonDown = false;
+	m_bRightButtonDown = false;
+	m_bSSAO = false;
 
 }
 
@@ -104,6 +111,14 @@ void CSilverX_ExperimentsView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/
 
 void CSilverX_ExperimentsView::OnRButtonUp(UINT /* nFlags */, CPoint point)
 {
+
+	SilverScene* pScene = GetDocument()->GetScenePtr();
+
+	assert( pScene!= NULL );
+
+	pScene->GetArcBall()->releaseRight(point.x,point.y);
+
+	m_bRightButtonDown = false;
 	ClientToScreen(&point);
 	OnContextMenu(this, point);
 }
@@ -194,7 +209,10 @@ void CSilverX_ExperimentsView::RenderScene()
 
 	//pScene->RenderSceneMRT();
 
-	pScene->RenderSceneSSAO();
+	if( m_bSSAO )
+		pScene->RenderSceneSSAO();
+	else
+		pScene->RenderScene();
 
 }
 
@@ -207,9 +225,11 @@ void CSilverX_ExperimentsView::OnLButtonDown(UINT nFlags, CPoint point)
 
 	assert(pScene != NULL);
 
-	pScene->Pinch(point.x,point.y);
+	pScene->GetArcBall()->pinchLeft(point.x,point.y);
 
 	InvalidateRect(NULL,FALSE);
+
+	m_bLeftButtonDown = true;
 
 	CView::OnLButtonDown(nFlags, point);
 }
@@ -223,7 +243,7 @@ void CSilverX_ExperimentsView::OnMouseMove(UINT nFlags, CPoint point)
 
 	assert(pScene != NULL);
 
-	pScene->Move(point.x,point.y);
+	pScene->GetArcBall()->move(point.x,point.y);
 
 	InvalidateRect(NULL,FALSE);
 
@@ -238,9 +258,11 @@ void CSilverX_ExperimentsView::OnLButtonUp(UINT nFlags, CPoint point)
 
 	assert(pScene != NULL);
 
-	pScene->Release(point.x,point.y);
+	pScene->GetArcBall()->releaseLeft(point.x,point.y);
 
 	InvalidateRect(NULL,FALSE);
+
+	m_bLeftButtonDown = false;
 
 	CView::OnLButtonUp(nFlags, point);
 }
@@ -289,4 +311,60 @@ BOOL CSilverX_ExperimentsView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt
 
 
 	return CView::OnMouseWheel(nFlags, zDelta, pt);
+}
+
+
+void CSilverX_ExperimentsView::OnRButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+
+	SilverScene* pScene = GetDocument()->GetScenePtr();
+	assert( pScene!= NULL );
+
+	pScene->GetArcBall()->pinchRight(point.x,point.y);
+	m_bRightButtonDown = true;
+	CView::OnRButtonDown(nFlags, point);
+}
+
+
+void CSilverX_ExperimentsView::OnSsaoEnable()
+{
+	// TODO: Add your command handler code here
+	m_bSSAO = !m_bSSAO;
+	InvalidateRect(NULL,FALSE);
+}
+
+
+void CSilverX_ExperimentsView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// TODO: Add your message handler code here and/or call default
+	SilverScene* pScene = GetDocument()->GetScenePtr();
+	if( !pScene )
+		return;
+	switch(nChar)
+	{
+	case 'W':
+		{
+			pScene->GetArcBall()->moveForwards();
+			break;
+		}
+	case 'A':
+		{
+			
+			break;
+		}
+	case 'S':
+		{
+			pScene->GetArcBall()->moveBackwards();
+			break;
+		}
+	case 'D':
+		{
+			break;
+		}
+	default:
+		break;
+	}
+	InvalidateRect(NULL,FALSE);
+	CView::OnKeyDown(nChar, nRepCnt, nFlags);
 }

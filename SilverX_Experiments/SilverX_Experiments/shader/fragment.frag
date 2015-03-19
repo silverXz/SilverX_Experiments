@@ -36,6 +36,8 @@ vec3 phong()
 void main()
 {
 	FragColor = vec4( phong(),1.0);
+	//vec3 n = normalize(eNormal);
+	//FragColor = vec4( n * 0.5f + vec3(0.5f),1.0f);
 }
 	
 	

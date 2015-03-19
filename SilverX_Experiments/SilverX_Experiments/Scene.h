@@ -8,22 +8,12 @@
 #include <glm/gtx/transform2.hpp>
 
 class WxCamera;
-class CxMesh;
 class ShaderLib;
 class Quad;
+class ArcBall;
+class Box;
 
-struct CursorPos
-{
-	int x;
-	int y;
-	CursorPos():x(0),y(0) {}
-	bool operator==(const CursorPos& cp)
-	{
-		return (x == cp.x && y == cp.y);
-	}
-};
-
-
+class SilMesh;
 
 class SilverScene
 {
@@ -43,10 +33,6 @@ public:
 
 	void RenderSceneSSAO();
 
-	void Pinch(int x, int y);
-	void Move(int x,int y);
-	void Release(int x,int y);
-
 	void SetupFramebuffer();
 
 	void ZoomIn();
@@ -55,9 +41,10 @@ public:
 
 	void LoadMesh(const char* filePath);
 
+	ArcBall* GetArcBall();
+	
 	void Resize(int w,int h);
 
-	glm::vec3 Get_Arcball_Vector(int,int);
 
 
 private:
@@ -66,19 +53,25 @@ private:
 
 	ShaderLib* m_pShaderLib;
 
+	ArcBall* m_pArcBall;
+
 	WxCamera* m_pCamera;
 
-	CxMesh* m_pMesh;
+	SilMesh* m_pSilMesh;
 
 	Quad* m_pQuad;
+	Box* m_pBox;
 
 	GLuint m_hFBO;
 	GLuint m_hAO;
+	GLuint m_hBlur;
+	GLuint m_hRandomTex;
+	GLuint m_hTexNormDepth;
+
+	glm::vec3 Samples[16];
 
 
-	CursorPos last,cur;
 
-	bool m_bPinched;
 
 	bool m_bSceneInited;
 
