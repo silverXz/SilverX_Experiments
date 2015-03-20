@@ -37,46 +37,46 @@
     <None Include="res\Toolbar256.bmp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\vertex.vert">
+    <None Include="shader\fragment.frag">
       <Filter>shader</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\fragment.frag">
+    <None Include="shader\MRT_fragment.frag">
       <Filter>shader</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\MRT_vertex.vert">
+    <None Include="shader\MRT_vertex.vert">
       <Filter>shader</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\MRT_fragment.frag">
+    <None Include="shader\quad.frag">
       <Filter>shader</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\quad.vert">
+    <None Include="shader\quad.vert">
       <Filter>shader</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\quad.frag">
+    <None Include="shader\SSAO_p1.frag">
       <Filter>shader</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p1.vert">
+    <None Include="shader\SSAO_p1.vert">
       <Filter>shader</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p1.frag">
+    <None Include="shader\SSAO_p2.frag">
       <Filter>shader</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p2.vert">
+    <None Include="shader\SSAO_p2.vert">
       <Filter>shader</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p2.frag">
+    <None Include="shader\SSAO_p3.frag">
       <Filter>shader</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p3.vert">
+    <None Include="shader\SSAO_p3.vert">
       <Filter>shader</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p3.frag">
+    <None Include="shader\SSAO_p4.frag">
       <Filter>shader</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p4.vert">
+    <None Include="shader\SSAO_p4.vert">
       <Filter>shader</Filter>
     </None>
-    <None Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\shader\SSAO_p4.frag">
+    <None Include="shader\vertex.vert">
       <Filter>shader</Filter>
     </None>
   </ItemGroup>
@@ -102,40 +102,43 @@
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\glcontext.h">
+    <ClInclude Include="ArcBall.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Scene.h">
+    <ClInclude Include="Box.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\GLShader.h">
+    <ClInclude Include="glcontext.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\ShaderLib.h">
+    <ClInclude Include="GLShader.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\WxCamera.h">
+    <ClInclude Include="Octree.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xUtilMfc.h">
+    <ClInclude Include="Quad.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Quad.h">
+    <ClInclude Include="Scene.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\SilverFramebuffer.h">
+    <ClInclude Include="ShaderLib.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Octree.h">
+    <ClInclude Include="SilMesh.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\ArcBall.h">
+    <ClInclude Include="WxCamera.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Box.h">
+    <ClInclude Include="xUtilMfc.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\SilMesh.h">
+    <ClInclude Include="SilverFramebuffer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SiMath.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -155,37 +158,37 @@
     <ClCompile Include="SilverX_ExperimentsView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\glcontext.cpp">
+    <ClCompile Include="ArcBall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Scene.cpp">
+    <ClCompile Include="Box.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\GLShader.cpp">
+    <ClCompile Include="glcontext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\ShaderLib.cpp">
+    <ClCompile Include="GLShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\WxCamera.cpp">
+    <ClCompile Include="Quad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\xUtilMfc.cpp">
+    <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Quad.cpp">
+    <ClCompile Include="ShaderLib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\SilverFramebuffer.cpp">
+    <ClCompile Include="SilMesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\ArcBall.cpp">
+    <ClCompile Include="WxCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\Box.cpp">
+    <ClCompile Include="xUtilMfc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\SilverX%27s Space\SilverX_Experiments\SilverX_Experiments\SilMesh.cpp">
+    <ClCompile Include="SilverFramebuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
