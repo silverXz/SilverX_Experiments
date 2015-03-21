@@ -3,10 +3,6 @@
 
 #include <stdlib.h>
 #include <string>
-#include <glm/glm.hpp>
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtx/transform2.hpp"
-
 #include <stdlib.h>
 #include "Box.h"
 #include "ArcBall.h"
@@ -71,17 +67,17 @@ void SilverScene::Init()
 
 	m_pArcBall = new ArcBall(m_pCamera,m_width,m_height);
 
-	glClearColor(1.0,1.0,1.0,1.0);
+	glClearColor(0.0,0.0,0.0,1.0);
 	glEnable(GL_DEPTH_TEST);
 
 	//SetupFramebuffer();
 	std::srand(50);
 	for( int i = 0 ; i < 16 ; i++ )
 	{
-		Samples[i].x = 2.0f * ((float)std::rand() / RAND_MAX) - 1.0f;
-		Samples[i].y = 2.0f * ((float)std::rand() / RAND_MAX) - 1.0f;
-		Samples[i].z = (float)std::rand() / RAND_MAX;
-		Samples[i] = glm::normalize(Samples[i]);
+		Samples[i].x() = 2.0f * ((float)std::rand() / RAND_MAX) - 1.0f;
+		Samples[i].y() = 2.0f * ((float)std::rand() / RAND_MAX) - 1.0f;
+		Samples[i].z() = (float)std::rand() / RAND_MAX;
+		Samples[i] = SilverX::normalize(Samples[i]);
 		/*float scale = (float)i / 16;
 		float t = scale * scale;
 		scale = 0.1f * (1.0f - t) + 1.0f * t;
@@ -108,10 +104,10 @@ void SilverScene::RenderScene()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 
 
-	glm::mat4 modelMatrix(1.0f);
-	glm::mat4 viewMatrix = m_pCamera->getViewMatrix();
-	glm::mat4 projectionMatrix = glm::perspective(90.0f,static_cast<float>(m_width)/static_cast<float>(m_height),0.1f,1000.0f);
-	glm::mat4 MVP = projectionMatrix * viewMatrix * modelMatrix;
+	SilverX::Matrix4f modelMatrix(1.0f);
+	SilverX::Matrix4f viewMatrix = m_pCamera->getViewMatrix();
+	SilverX::Matrix4f projectionMatrix = SilverX::perspective(90.0f,static_cast<float>(m_width)/static_cast<float>(m_height),0.1f,1000.0f);
+	SilverX::Matrix4f MVP = projectionMatrix * viewMatrix * modelMatrix;
 
 	pShader->SetUniform("ModelMatrix",modelMatrix);
 	pShader->SetUniform("ViewMatrix",viewMatrix);
@@ -119,14 +115,14 @@ void SilverScene::RenderScene()
 
 
 
-	glm::vec4 LightWorldPosition(100.0f,100.0f,100.0f,1.0f);
-	glm::vec3 LightIntensity(1.0f);
-	pShader->SetUniform("Light0.Position",glm::vec3(viewMatrix * LightWorldPosition));
+	SilverX::Vector4f LightWorldPosition(100.0f,100.0f,100.0f,1.0f);
+	SilverX::Vector3f LightIntensity(1.0f);
+	pShader->SetUniform("Light0.Position",SilverX::Vector3f(viewMatrix * LightWorldPosition));
 	pShader->SetUniform("Light0.Intensity",LightIntensity);
 
-	pShader->SetUniform("material.Ka",glm::vec3(0.4f));
-	pShader->SetUniform("material.Kd",glm::vec3(0.6f));
-	pShader->SetUniform("material.Ks",glm::vec3(0.3f));
+	pShader->SetUniform("material.Ka",SilverX::Vector3f(0.4f));
+	pShader->SetUniform("material.Kd",SilverX::Vector3f(0.6f));
+	pShader->SetUniform("material.Ks",SilverX::Vector3f(0.3f));
 
 	pShader->SetUniform("material.Shininess",128.0f);
 
@@ -425,26 +421,25 @@ void SilverScene::RenderSceneSSAO()
 
 	glViewport(0,0,m_width,m_height);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
+	SilverX::Matrix4f modelMat(1.0f);
+	SilverX::Matrix4f vMat = m_pCamera->getViewMatrix();
+	SilverX::Matrix4f projMat = SilverX::perspective(90.0f,static_cast<float>(m_width)/m_height,1.0f,1000.0f);
+	SilverX::Matrix4f MVP = projMat * vMat * modelMat;
 
-	glm::mat4 modelMatrix(1.0f);
-	glm::mat4 viewMatrix = m_pCamera->getViewMatrix();
-	glm::mat4 projectionMatrix = glm::perspective(90.0f,static_cast<float>(m_width)/static_cast<float>(m_height),1.0f,1000.0f);
-	glm::mat4 MVP = projectionMatrix * viewMatrix * modelMatrix;
-
-	pShader->SetUniform("ModelMatrix",modelMatrix);
-	pShader->SetUniform("ViewMatrix",viewMatrix);
+	pShader->SetUniform("ModelMatrix",modelMat);
+	pShader->SetUniform("ViewMatrix",vMat);
 	pShader->SetUniform("MVP",MVP);
 
-
-	pShader->SetUniform("material.Ka",glm::vec3(1.0f));
-	pShader->SetUniform("material.Kd",glm::vec3(0.0f));
-	pShader->SetUniform("material.Ks",glm::vec3(0.0f));
+	
+	pShader->SetUniform("material.Ka",SilverX::Vector3f(1.0f));
+	pShader->SetUniform("material.Kd",SilverX::Vector3f(0.0f));
+	pShader->SetUniform("material.Ks",SilverX::Vector3f(0.0f));
 	m_pSilMesh->Render();
 	
 
-	pShader->SetUniform("material.Ka",glm::vec3(1.0f));
-	pShader->SetUniform("material.Kd",glm::vec3(0.3f));
-	pShader->SetUniform("material.Ks",glm::vec3(0.0f));
+	pShader->SetUniform("material.Ka",SilverX::Vector3f(1.0f));
+	pShader->SetUniform("material.Kd",SilverX::Vector3f(0.3f));
+	pShader->SetUniform("material.Ks",SilverX::Vector3f(0.0f));
 
 	m_pBox->Render();
 
@@ -462,11 +457,17 @@ void SilverScene::RenderSceneSSAO()
 
 	pShader->SetUniform("power",1.0f);
 
-	pShader->SetUniform("InverseProjectionMatrix",glm::inverse(projectionMatrix));
+	SilverX::Matrix4f inverProjMat = SilverX::inverse(projMat);
+	int loc = glGetUniformLocation(pShader->GetHandle(),"InverseProjectionMatrix");
+	if( loc >= 0 )
+		glUniformMatrix4fv(loc,1,GL_FALSE,inverProjMat.v);
+
+	//glm::mat4 invP = glm::inverse(projectionMatrix);
+	//pShader->SetUniform("InverseProjectionMatrix",invP);
 	pShader->SetUniform("TexNormalDepth",0);		// FragColor
 	pShader->SetUniform("TexRandom",5);
-	pShader->SetUniform("ProjectionMatrix",projectionMatrix);
-	pShader->SetUniform("NoiseScale",glm::vec2(m_width/4.0,m_height/4.0));
+	pShader->SetUniform("ProjectionMatrix",projMat);
+	pShader->SetUniform("NoiseScale",SilverX::Vector2f(m_width/4.0f,m_height/4.0f));
 	pShader->SetUniform("Radius",0.1f);
 	
 	char UniName[20];
@@ -499,7 +500,7 @@ void SilverScene::RenderSceneSSAO()
 	pShader->Use();
 	
 	//Vertex Shader
-	pShader->SetUniform("InverseProjectionMatrix",glm::inverse(projectionMatrix));
+	pShader->SetUniform("InverseProjectionMatrix",SilverX::inverse(projMat));
 
 	pShader->SetUniform("TexAmbient",1);
 	pShader->SetUniform("TexDiffuse",2);
@@ -507,9 +508,9 @@ void SilverScene::RenderSceneSSAO()
 	pShader->SetUniform("TexNormalDepth",0);
 	pShader->SetUniform("TexAO",6);
 
-	glm::vec4 LightWorldPosition(0.0f,0.0f,0.0f/*m_pMesh->GetBoundingBox()->xMax(),m_pMesh->GetBoundingBox()->yMax(),m_pMesh->GetBoundingBox()->zMax()*/,1.0f);
-	glm::vec3 LightIntensity(1.0f);
-	pShader->SetUniform("Light0.Position",glm::vec3(viewMatrix * LightWorldPosition));
+	SilverX::Vector4f LightWorldPosition(0.0f,0.0f,0.0f,1.0f);
+	SilverX::Vector3f LightIntensity(1.0f);
+	pShader->SetUniform("Light0.Position",SilverX::Vector3f(vMat * LightWorldPosition));
 	pShader->SetUniform("Light0.Intensity",LightIntensity);
 
 
@@ -538,18 +539,18 @@ void SilverScene::RenderSceneMRT()
 	glViewport(0,0,m_width,m_height);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 
-	glm::mat4 modelMatrix(1.0f);
-	glm::mat4 viewMatrix = m_pCamera->getViewMatrix();
-	glm::mat4 projectionMatrix = glm::perspective(90.0f,static_cast<float>(m_width)/static_cast<float>(m_height),0.1f,1000.0f);
-	glm::mat4 MVP = projectionMatrix * viewMatrix * modelMatrix;
+	SilverX::Matrix4f modelMatrix(1.0f);
+	SilverX::Matrix4f viewMatrix = m_pCamera->getViewMatrix();
+	SilverX::Matrix4f projectionMatrix = SilverX::perspective(90.0f,static_cast<float>(m_width)/static_cast<float>(m_height),0.1f,1000.0f);
+	SilverX::Matrix4f MVP = projectionMatrix * viewMatrix * modelMatrix;
 
 	pShader->SetUniform("ModelMatrix",modelMatrix);
 	pShader->SetUniform("ViewMatrix",viewMatrix);
 	pShader->SetUniform("MVP",MVP);
 
-	pShader->SetUniform("material.Ka",glm::vec3(0.7f));
-	pShader->SetUniform("material.Kd",glm::vec3(0.4f));
-	pShader->SetUniform("material.Ks",glm::vec3(0.3f));
+	pShader->SetUniform("material.Ka",SilverX::Vector3f(0.7f));
+	pShader->SetUniform("material.Kd",SilverX::Vector3f(0.4f));
+	pShader->SetUniform("material.Ks",SilverX::Vector3f(0.3f));
 
 	m_pSilMesh->Render();
 
@@ -578,9 +579,9 @@ void SilverScene::RenderSceneMRT()
 	pShader = m_pShaderLib->GetShaderProgram(E_QUAD_SHADER);
 	pShader->Use();
 
-	glm::vec4 LightWorldPosition(100.0f,100.0f,100.0f,1.0f);
-	glm::vec3 LightIntensity(0.75f);
-	pShader->SetUniform("Light0.Position",glm::vec3(viewMatrix * LightWorldPosition));
+	SilverX::Vector4f LightWorldPosition(100.0f,100.0f,100.0f,1.0f);
+	SilverX::Vector3f LightIntensity(0.75f);
+	pShader->SetUniform("Light0.Position",SilverX::Vector3f(viewMatrix * LightWorldPosition));
 	pShader->SetUniform("Light0.Intensity",LightIntensity);
 
 	pShader->SetUniform("TexNormalDepth",0);		// FragNormal And Depth
@@ -590,7 +591,7 @@ void SilverScene::RenderSceneMRT()
 
 	int max_Texel_Offset = 0;
 	glGetIntegerv(GL_MIN_PROGRAM_TEXEL_OFFSET,&max_Texel_Offset);
-	pShader->SetUniform("InverseProjectionMatrix",glm::inverse(projectionMatrix));
+	pShader->SetUniform("InverseProjectionMatrix",SilverX::inverse(projectionMatrix));
 
 	m_pQuad->render();
 

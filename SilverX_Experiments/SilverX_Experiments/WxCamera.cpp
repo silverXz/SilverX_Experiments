@@ -1,119 +1,113 @@
 #include "stdafx.h"
 #include "WxCamera.h"
 
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtx/transform2.hpp"
-
-const float Pai = 3.14159265f;
-const float halfPai = Pai / 2.0f;
-
-
-
-using namespace glm;
-
+using namespace SilverX;
 WxCamera::WxCamera():curAngle(0.0)
 {
-	mposition = vec3(0.0,0.0,10.0);
-	mlookAt = vec3(0.0,0.0,0.0);
-	mUp = vec3(0.0,1.0,0.0);
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	camPos = Vector3f(0.0f,0.0f,10.0f);
+	camLookAt = Vector3f(0.0f,0.0f,0.0f);
+	camUp = Vector3f(0.0f,1.0f,0.0f);
+	vMat = lookAt(camPos,camLookAt,camUp);
 };
 
-WxCamera::WxCamera(vec3 loc,vec3 foc,vec3 up):curAngle(0.0)
+WxCamera::WxCamera( float eye_x,float eye_y,float eye_z,float at_x,float at_y,float at_z,float up_x,float up_y,float up_z )
+	: camPos(eye_x,eye_y,eye_z), camLookAt(at_x,at_y,at_z),camUp(up_x,up_y,up_z)
 {
-	mposition = loc;
-	mlookAt = foc;
-	mUp = up;
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	vMat = lookAt(camPos,camLookAt,camUp);
 }
 
-void WxCamera::setPosition(vec3 pos)
+WxCamera::WxCamera( const SilverX::Vector3f& eye, const SilverX::Vector3f& lookat,const SilverX::Vector3f& up )
+	: camPos(eye), camLookAt(lookat),camUp(up)
 {
-	mposition = pos;
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	vMat = lookAt(camPos,camLookAt,camUp);
 }
 
-void WxCamera::setFocus(vec3 focus)
+void WxCamera::setCamPosition( SilverX::Vector3f p )
 {
-	mlookAt = focus;
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	camPos = p;
+	vMat = lookAt(camPos,camLookAt,camUp);
 }
 
-void WxCamera::setUpOrien(vec3 upup)
+void WxCamera::setUpOrien( SilverX::Vector3f u )
 {
-	mUp = upup;
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	camUp = u;
+	vMat = lookAt(camPos,camLookAt,camUp);
+}
+
+
+void WxCamera::setFocus( SilverX::Vector3f lookat )
+{
+	camLookAt = lookat;
+	vMat = lookAt(camPos,camLookAt,camUp);
 }
 
 void WxCamera::reset()
 {
-	mposition = vec3(0.0,0.0,10.0);
-	mlookAt = vec3(0.0,0.0,0.0);
-	mUp = vec3(0.0,1.0,0.0);
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	camPos = Vector3f(0.0f,0.0f,10.0f);
+	camLookAt = Vector3f(0.0f);
+	camUp = Vector3f(0.0f,1.0f,0.0f);
+	vMat = lookAt(camPos,camLookAt,camUp);
 }
 
 void WxCamera::zoomIn()
 {
-	vec4 Orient = normalize(vec4(mlookAt - mposition,1.0));
-	vec3 mov = vec3(Orient.x,Orient.y,Orient.z) * zSpeed;
-	mposition += mov;
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	Vector3f camOrient = normalize(camLookAt - camPos);
+	camPos += camOrient * zSpeed;
+	vMat = lookAt(camPos,camLookAt,camUp);
 }
 
 
 void WxCamera::zoomOut()
 {
-	vec4 Orient = normalize(vec4(mlookAt - mposition,1.0));
-	vec3 mov = vec3(Orient.x,Orient.y,Orient.z) * zSpeed;
-	mposition -= mov;
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	Vector3f camOrient = normalize(camLookAt - camPos);
+	camPos -= camOrient * zSpeed;
+	vMat = lookAt(camPos,camLookAt,camUp);
 }
 
 void WxCamera::cwRotate()
 {
 	
-	if((curAngle + rSpeed) > halfPai / 2.0f)
+	if((curAngle + rSpeed) > HALFPI / 2.0f)
 		return;
 	else
 		curAngle += rSpeed;
-	vec4 last = vec4(mposition,1.0);
-	mat4 rMat = glm::rotate(mat4(1.0),glm::degrees(rSpeed),vec3(0.0,1.0,0.0));
-	mposition = vec3(rMat*last);
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	Vector4f last = Vector4f(camPos,1.0);
+	Matrix4f rMat = rotate(rSpeed,Vector3f(0.0,1.0,0.0));
+	camPos = Vector3f(rMat*last);
+	vMat= lookAt(camPos,camLookAt,camUp);
 }
 
 void WxCamera::ccwRotate()
 {
-	if((curAngle - rSpeed) < -halfPai / 2.0f)
+	if((curAngle - rSpeed) < -HALFPI / 2.0f)
 		return;
 	else
 		curAngle -= rSpeed;
-	vec4 last = vec4(mposition,1.0);
-	mat4 rMat = glm::rotate(mat4(1.0),glm::degrees(-rSpeed),vec3(0.0,1.0,0.0));
-	mposition = vec3(rMat*last);
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	Vector4f last = Vector4f(camPos,1.0);
+	Matrix4f rMat = rotate(-rSpeed,Vector3f(0.0,1.0,0.0));
+	camPos = Vector3f(rMat*last);
+	vMat = lookAt(camPos,camLookAt,camUp);
 }
 
 void WxCamera::moveUp()
 {
-	vec3 orien(0.0,1.0,0.0);
-	mlookAt += tSpeed * orien;
-	mposition += tSpeed * orien;
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	Vector3f orien(0.0,1.0,0.0);
+	camLookAt += orien * tSpeed;
+	camPos += orien * tSpeed;
+	vMat = lookAt(camPos,camLookAt,camUp);
 }
 
 void WxCamera::moveDown()
 {
-	vec3 orien(0.0,-1.0,0.0);
-	mlookAt += tSpeed * orien;
-	mposition += tSpeed * orien;
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	Vector3f orien(0.0,-1.0,0.0);
+	camLookAt += orien * tSpeed;
+	camPos += orien * tSpeed;
+	vMat = lookAt(camPos,camLookAt,camUp);
 }
 
 void WxCamera::setFrustrum(float xangle,float xratio,float xnear,float xfar)
 {
-	projection = glm::perspective(xangle,xratio,xnear,xfar);
+	projMat = perspective(xangle,xratio,xnear,xfar);
 }
 
 float WxCamera::getCurrentAngle()
@@ -126,28 +120,35 @@ void WxCamera::setCurrentAngle( float _angle )
 	curAngle = _angle;
 }
 
-void WxCamera::moveForwards( void )
+
+SilverX::Matrix4f WxCamera::getViewMatrix()
 {
-	vec3 orient = normalize(mlookAt - mposition);
-
-	mposition += orient * forwardSpeed;
-	mlookAt += orient * forwardSpeed;
-
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	return vMat;
 }
 
-void WxCamera::moveBackwards( void )
+SilverX::Vector3f WxCamera::getLookOrien( void )
 {
-	vec3 orient = normalize(mposition - mlookAt);
-
-	mposition += orient * forwardSpeed;
-	mlookAt += orient * forwardSpeed;
-
-	view = glm::lookAt(mposition,mlookAt,mUp);
+	return normalize(camLookAt - camPos);
 }
+
+SilverX::Vector3f WxCamera::getCamPosition()
+{
+	return camPos;
+}
+
+SilverX::Vector3f WxCamera::getUpOrien( void )
+{
+	return camUp;
+}
+
+SilverX::Matrix4f WxCamera::getProjectionMatrix( void )
+{
+	return projMat;
+}
+
 
 
 float WxCamera::zSpeed = 0.10f;
-float WxCamera::rSpeed = halfPai / 40.0f ;   //9 degree one time
+float WxCamera::rSpeed = HALFPI / 40.0f ;   //9 degree one time
 float WxCamera::tSpeed = 0.18f;
 float WxCamera::forwardSpeed = 0.10f;

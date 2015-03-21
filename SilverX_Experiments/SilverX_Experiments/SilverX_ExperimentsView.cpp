@@ -212,7 +212,7 @@ void CSilverX_ExperimentsView::RenderScene()
 	if( m_bSSAO )
 		pScene->RenderSceneSSAO();
 	else
-		pScene->RenderScene();
+		pScene->RenderSceneMRT();
 
 }
 
@@ -243,8 +243,8 @@ void CSilverX_ExperimentsView::OnMouseMove(UINT nFlags, CPoint point)
 
 	assert(pScene != NULL);
 
-	pScene->GetArcBall()->move(point.x,point.y);
-
+	//pScene->GetArcBall()->move(point.x,point.y);
+	pScene->GetArcBall()->MoveSilverX(point.x,point.y);
 	InvalidateRect(NULL,FALSE);
 
 	CView::OnMouseMove(nFlags, point);
@@ -345,7 +345,6 @@ void CSilverX_ExperimentsView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
 	case 'W':
 		{
-			pScene->GetArcBall()->moveForwards();
 			break;
 		}
 	case 'A':
@@ -355,7 +354,6 @@ void CSilverX_ExperimentsView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		}
 	case 'S':
 		{
-			pScene->GetArcBall()->moveBackwards();
 			break;
 		}
 	case 'D':

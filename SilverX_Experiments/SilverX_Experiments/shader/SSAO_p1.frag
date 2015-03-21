@@ -20,6 +20,8 @@ uniform MaterialInfo material;
 
 void main()
 {
+	if( !gl_FrontFacing )
+		discard;
 	FragNormalDepth = eNormalDepth;
 	FragAmbient = material.Ka;
 	FragDiffuse = material.Kd;

@@ -1,40 +1,34 @@
 #pragma once
 
-#include <glm/glm.hpp>
+#include "SiMath.h"
 
 
 class WxCamera
 {
 public:
 	WxCamera();
-	WxCamera(glm::vec3,glm::vec3,glm::vec3);
+	WxCamera(float eye_x,float eye_y,float eye_z,float at_x,float at_y,float at_z,float up_x,float up_y,float up_z);
+
+	WxCamera(const SilverX::Vector3f& eye, const SilverX::Vector3f& lookat,const SilverX::Vector3f& up);
 
 	//Camera Attribute
-	void setPosition(glm::vec3);
-	void setFocus(glm::vec3);
-	void setUpOrien(glm::vec3);
+	void setCamPosition(SilverX::Vector3f p);
+	void setSilUpOrien(SilverX::Vector3f u);
+	void setFocus(SilverX::Vector3f lookat);
+	void setUpOrien(SilverX::Vector3f up);
+	
+	
 	void reset(void);
 	void setFrustrum(float xangle,float xratio,float xnear,float xfar);
 
-	glm::vec3 getPosition(void)
-	{
-		return mposition; 
-	}
 
-	glm::vec3 getUpOrien(void)
-	{
-		return mUp;
-	}
+	SilverX::Vector3f getCamPosition();
 
-	glm::vec3 getLookOrien(void)
-	{
-		return glm::vec3(glm::normalize(mlookAt - mposition));
-	}
 
-	glm::vec3 getFocus(void)
-	{
-		return mlookAt;
-	}
+
+	SilverX::Vector3f getUpOrien(void);
+
+	SilverX::Vector3f getLookOrien(void);
 
 	//Camera Operation
 
@@ -43,23 +37,22 @@ public:
 	void cwRotate(void);
 	void ccwRotate(void);
 
-	void moveForwards(void);
-	void moveBackwards(void);
-
 	void moveUp(void);
 	void moveDown(void);
-	glm::mat4 getViewMatrix(void){ return view;}
-	glm::mat4 getProjectionMatrix(void) { return projection;}
+	SilverX::Matrix4f getViewMatrix();
+	SilverX::Matrix4f getProjectionMatrix(void);
+
+
 	float getCurrentAngle();
 	void setCurrentAngle(float _angle);
 
 
 private:
-	glm::mat4 view;
-	glm::mat4 projection;
-	glm::vec3 mposition;
-	glm::vec3 mlookAt;
-	glm::vec3 mUp;
+	SilverX::Matrix4f vMat;
+	SilverX::Matrix4f projMat;
+	SilverX::Vector3f camPos;
+	SilverX::Vector3f camLookAt;
+	SilverX::Vector3f camUp;
 	float curAngle;
 	float focalLength;
 

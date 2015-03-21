@@ -243,53 +243,6 @@ void GLShader::SetUniform( const char *name, float x, float y, float z)
 	}
 }
 
-void GLShader::SetUniform( const char *name, const glm::vec3 & v)
-{
-	this->SetUniform(name,v.x,v.y,v.z);
-}
-
-void GLShader::SetUniform( const char *name, const glm::vec4 & v)
-{
-	int loc = GetUniformLocation(name);
-	if( loc >= 0 ) {
-		glUniform4f(loc,v.x,v.y,v.z,v.w);
-	} else {
-		printf("Uniform: %s not found.\n",name);
-	}
-}
-
-void GLShader::SetUniform( const char *name, const glm::vec2 & v)
-{
-	int loc = GetUniformLocation(name);
-	if( loc >= 0 ) {
-		glUniform2f(loc,v.x,v.y);
-	} else {
-		printf("Uniform: %s not found.\n",name);
-	}
-}
-
-void GLShader::SetUniform( const char *name, const glm::mat4 & m)
-{
-	int loc = GetUniformLocation(name);
-	if( loc >= 0 )
-	{
-		glUniformMatrix4fv(loc, 1, GL_FALSE, &m[0][0]);
-	} else {
-		printf("Uniform: %s not found.\n",name);
-	}
-}
-
-void GLShader::SetUniform( const char *name, const glm::mat3 & m)
-{
-	int loc = GetUniformLocation(name);
-	if( loc >= 0 )
-	{
-		glUniformMatrix3fv(loc, 1, GL_FALSE, &m[0][0]);
-	} else {
-		printf("Uniform: %s not found.\n",name);
-	}
-}
-
 void GLShader::SetUniform( const char *name, float val )
 {
 	int loc = GetUniformLocation(name);
@@ -318,6 +271,56 @@ void GLShader::SetUniform( const char *name, bool val )
 	if( loc >= 0 )
 	{
 		glUniform1i(loc, val);
+	} else {
+		printf("Uniform: %s not found.\n",name);
+	}
+}
+
+void GLShader::SetUniform( const char* name, const SilverX::Vector2f& v )
+{
+	int loc = GetUniformLocation(name);
+	if( loc >= 0 ) {
+		glUniform2fv(loc,1,v.v);
+	} else {
+		printf("Uniform: %s not found.\n",name);
+	}
+}
+
+void GLShader::SetUniform( const char* name, const SilverX::Vector3f& v )
+{
+	int loc = GetUniformLocation(name);
+	if( loc >= 0 ) {
+		glUniform3fv(loc,1,v.v);
+	} else {
+		printf("Uniform: %s not found.\n",name);
+	}
+}
+
+void GLShader::SetUniform( const char *name, const SilverX::Vector4f & v )
+{
+	int loc = GetUniformLocation(name);
+	if( loc >= 0 ) {
+		glUniform4fv(loc,1,v.v);
+	} else {
+		printf("Uniform: %s not found.\n",name);
+	}
+}
+
+void GLShader::SetUniform( const char *name, const SilverX::Matrix4f & m )
+{
+	int loc = GetUniformLocation(name);
+	if( loc >= 0 ) {
+		glUniformMatrix4fv(loc,1,GL_FALSE,m.v);
+	} else {
+		printf("Uniform: %s not found.\n",name);
+	}
+}
+
+void GLShader::SetUniform( const char *name, const SilverX::Matrix3f & m )
+{
+	int loc = GetUniformLocation(name);
+	if( loc >= 0 ) {
+		glUniformMatrix3fv(loc,1,GL_FALSE,m.v);
 	} else {
 		printf("Uniform: %s not found.\n",name);
 	}

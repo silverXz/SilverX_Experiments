@@ -5,6 +5,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform2.hpp>
 
+#include "SiMath.h"
+
 class WxCamera;
 
 
@@ -18,16 +20,16 @@ public:
 	WxCamera* getCameraPtr();
 	void setViewPort(int w,int h);
 
-	void moveForwards(void);
-	void moveBackwards(void);
 
-	void move(int x,int y);
+	void MoveSilverX(int x,int y);
 	void pinchLeft(int x, int y);
 	void releaseLeft(int x,int y);
 	void pinchRight(int x, int y);
 	void releaseRight(int x,int y);
 
 	glm::vec3 get_arcball_vector(int,int);
+
+	SilverX::Vector3f Get_ArcBall_Vector(int x,int y);
 
 private:
 

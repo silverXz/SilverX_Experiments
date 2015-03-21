@@ -1,8 +1,7 @@
 #pragma once
 #include <string>
-#include <glm/glm.hpp>
+#include "SiMath.h"
 #include <gl/glew.h>
-
 
 namespace GLSLShader 
 {
@@ -34,15 +33,15 @@ public:
 	void Use();
 
 	void   SetUniform( const char *name, float x, float y, float z);
-	void   SetUniform( const char *name, const glm::vec2 & v);
-	void   SetUniform( const char *name, const glm::vec3 & v);
-	void   SetUniform( const char *name, const glm::vec4 & v);
-	void   SetUniform( const char *name, const glm::mat4 & m);
-	void   SetUniform( const char *name, const glm::mat3 & m);
+	void   SetUniform(const char* name, const SilverX::Vector2f& v);
+	void   SetUniform( const char* name, const SilverX::Vector3f& v);
+	void   SetUniform( const char *name, const SilverX::Vector4f & v);
+	void   SetUniform( const char *name, const SilverX::Matrix4f & m);
+	void   SetUniform( const char *name, const SilverX::Matrix3f & m);
 	void   SetUniform( const char *name, float val );
 	void   SetUniform( const char *name, int val );
 	void   SetUniform( const char *name, bool val );
-
+	int    GetHandle();
 
 private:
 
@@ -56,7 +55,7 @@ private:
 	
 	std::string GetLog();
 
-	int    GetHandle();
+
 	bool   IsLinked();
 
 	void   BindAttribLocation( GLuint location, const char * name);

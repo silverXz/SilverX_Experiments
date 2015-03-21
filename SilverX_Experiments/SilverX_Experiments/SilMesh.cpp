@@ -46,7 +46,7 @@ bool SilMesh::LoadMesh( const char* filePath )
 	printf("There is total %d meshes!\n",scene->mNumMeshes);
 
 	// FOR EACH MESH
-	for( int i = 0 ; i < scene->mNumMeshes ; ++i )
+	for( unsigned int i = 0 ; i < scene->mNumMeshes ; ++i )
 	{
 		aiMesh* mesh = scene->mMeshes[i];
 		int iMeshFaces = mesh->mNumFaces;
@@ -106,6 +106,8 @@ bool SilMesh::LoadMesh( const char* filePath )
 
 
 	glBindVertexArray(0);
+
+	return true;
 }
 
 void SilMesh::Render()

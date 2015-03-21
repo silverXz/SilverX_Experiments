@@ -2,10 +2,7 @@
 #define _SILVERX_SCENE_H_
 
 #include <glew.h>
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/transform2.hpp>
+#include "SiMath.h"
 
 class WxCamera;
 class ShaderLib;
@@ -68,7 +65,7 @@ private:
 	GLuint m_hRandomTex;
 	GLuint m_hTexNormDepth;
 
-	glm::vec3 Samples[16];
+	SilverX::Vector3f Samples[16];
 
 
 
